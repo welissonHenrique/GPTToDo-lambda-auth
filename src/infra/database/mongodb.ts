@@ -1,7 +1,7 @@
 import { Database } from "../../app/contracts";
 
-export class MongoDb implements Database {
-  async getUserByEmail(email: string) {
+export class MongoDB implements Database {
+  async getUserByEmail(email: string): Promise<any> {
     return true;
   }
 }
