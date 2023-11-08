@@ -1,0 +1,32 @@
+name: lambda-auth-api-deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to aws lambda
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.20.1"
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build and deploy
+        run: |
+          yarn build
+          yarn deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
