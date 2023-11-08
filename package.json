@@ -1,0 +1,33 @@
+{
+  "name": "lambda-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "serverless package --package build",
+    "deploy": "serverless deploy --package build",
+    "dev": "serverless offline --lambdaPort 5050 --httpPort 3030"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1490.0",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.126",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
+    "serverless": "^3.36.0",
+    "serverless-offline": "^13.2.1",
+    "serverless-plugin-typescript": "^2.1.5",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
+  }
+}

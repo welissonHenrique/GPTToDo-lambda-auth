@@ -1,0 +1,32 @@
+service: lambda-auth
+frameworkVersion: "3"
+
+useDotenv: true
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  timeout: 60
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+        - lambda:InvokeAsync
+      Resource: "*"
+
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+
+custom:
+  serverless-offline:
+    host: 0.0.0.0
+
+functions:
+  api:
+    handler: handler.handler
+    memorySize: 512
+    events:
+      - httpApi: "*"
