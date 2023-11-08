@@ -1,4 +1,5 @@
 import { ApplicationError } from "../../app/errors";
+import { SessionUseCase } from "../../app/session/session";
 
 type AuthControllerRequest = {
   email: string;
@@ -6,12 +7,16 @@ type AuthControllerRequest = {
 };
 
 export class AuthController {
+  constructor(private readonly authUseCase: SessionUseCase) {}
+
   async handle(params: AuthControllerRequest) {
     try {
+      const session = await this.authUseCase.execute(params);
+
       return {
         success: true,
-        token: "TOKEN RETORNADO PELO CASO DE USO",
         statusCode: 200,
+        ...session,
       };
     } catch (error) {
       if (error instanceof ApplicationError) {
